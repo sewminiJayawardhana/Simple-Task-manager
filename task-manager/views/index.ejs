@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task Manager</title>
+<style>
+ body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding:
+20px; }
+ .task { margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; }
+ .completed { background-color: #e8f5e9; text-decoration: line-through; }
+ form { margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<h1>Task Manager</h1>
+
+ <!-- Add Task Form -->
+<form action="/tasks" method="POST">
+ <input type="text" name="title" placeholder="Enter task..." required>
+ 
+
+ <button type="submit">Add Task</button>
+
+ <button type="reset">Clear</button>
+</form>
+
+ <!-- Task List -->
+<h2>Tasks</h2>
+<% tasks.forEach(task => { %>
+ <div class="task <%= task.status === 'completed' ? 'completed' : '' %>">
+ <strong><%= task.title %></strong>
+
+ <form action="/tasks/<%= task.id %>/toggle" method="POST" style="display:
+inline;">
+ <button type="submit"><%= task.status === 'completed' ? 'Mark Pending' :
+'Mark Complete' %></button>
+ </form>
+
+ <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST" style="display:inline;">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit" style="color: red;">Delete</button>
+</form>
+
+ </div>
+<% }); %>
+ <p><a href="/tasks">View All Tasks</a></p>
+</body>
+</html>
