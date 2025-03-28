@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 <title>Task Manager</title>
 <style>
  body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding:
@@ -37,8 +39,11 @@ inline;">
 
  <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST" style="display:inline;">
     <input type="hidden" name="_method" value="DELETE">
-    <button type="submit" style="color: red;">Delete</button>
+    <button type="submit" style="color: red; background: none; border: none; cursor: pointer;">
+        <i class="fas fa-trash"></i>
+    </button>
 </form>
+
 
  </div>
 <% }); %>
